@@ -58,6 +58,13 @@ class Sanction(Page):
 class SanctionWaitPage(WaitPage):
     pass
 
+class RoundResults(Page):
+    pass
+
+class FinalResults(Page):
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.num_rounds
+
 
 page_sequence = [
 	Introduction,

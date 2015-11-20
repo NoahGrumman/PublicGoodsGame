@@ -1,6 +1,6 @@
 {% extends "global/Base.html" %} {% load staticfiles otree_tags %}
 
-{% block title %} Round {{ subsession.round_number }}: Preliminary Results {% endblock %}
+{% block title %} Round {{ subsession.round_number }}: Sanction {% endblock %}
 
 {% block content %}
 
@@ -12,7 +12,7 @@
     	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>.
     </li>
     <li>
-    	You now have <b>{{ player.payoff }}</b>.
+    	Thus you currently have <b>{{ player.payoff }}</b>.
     </li>
     <li>
     	Now, you may choose to sanction other participants in your group for failing to contribute their fair share to the group. <b> Sanctioning another group member will cost you $1 and cost the sanctioned member $10.</b>

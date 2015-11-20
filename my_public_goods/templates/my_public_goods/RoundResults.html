@@ -1,0 +1,27 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Round {{ subsession.round_number }}: Results {% endblock %}
+
+{% block content %}
+
+<ul>
+	<li>
+    	You started with an <b> endowment of {{ Constants.endowment }}</b>, of which you  <b> contributed {{ player.contribution }}</b>.
+    </li>
+    <li>
+    	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>.
+    </li>
+    <li>
+      You sanctioned _ other group members, at a cost of $1 per sanction.
+    </li>
+    <li>
+      You were sanctioned by _ other group members, costing you $10 per sanction.
+    </li>
+    <li>
+    	You now have <b>{{ player.payoff }}</b>.
+    </li>
+</ul>
+
+{% next_button %}
+
+{% endblock %}
