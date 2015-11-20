@@ -72,20 +72,20 @@ INSTALLED_APPS = []
 DEMO_PAGE_INTRO_TEXT = """
 <ul>
     <li>
-        <a href="https://github.com/oTree-org/otree" target="_blank">
+        <a href="https://github.com/NoahGrumman/PublicGoodsGame" target="_blank">
             Source code
-        </a> for the below games.
+        </a> for this game
     </li>
     <li>
         <a href="http://www.otree.org/" target="_blank">
             oTree homepage
-        </a>.
+        </a>
     </li>
 </ul>
 <p>
-    Below are various games implemented with oTree. These games are all open
-    source, and you can modify them as you wish to create your own variations.
-    Click one to learn more and play.
+    Click the link to the right to run the demo. To run the actual experiment, click
+    on "Sessions" in the top navbar, create a new session, and enter the number of 
+    participants (should be a multiple of players_per_group in models.py)
 </p>
 """
 
@@ -129,7 +129,7 @@ SESSION_CONFIG_DEFAULTS = {
 SESSION_CONFIGS = [
     {
         'name': 'my_public_goods',
-        'display_name': "My Public Goods (Simple Version)",
+        'display_name': "Grumman Public Goods Game",
         'num_demo_participants': 3,
         'app_sequence': ['my_public_goods'],
     }

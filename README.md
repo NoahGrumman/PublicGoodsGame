@@ -11,3 +11,7 @@ cd PublicGoodsGame
 otree resetdb
 otree runserver
 ```
+
+## Todo
+- Decide on efficiency factor, endowment size, etc.
+- Decide on group sizes. Will this need to be changed once we see how many people actually show up?
