@@ -10,7 +10,8 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
-if os.environ.get('OTREE_PRODUCTION') not in {None, '', '0'}:
+OTREE_PRODUCTION = 1
+if os.environ.get('OTREE_PRODUCTION') not in {None, '', '1'}:
     DEBUG = False
 else:
     DEBUG = True
@@ -21,7 +22,7 @@ ADMIN_PASSWORD = 'otree'
 # don't share this with anybody.
 # Change this to something unique (e.g. mash your keyboard),
 # and then delete this comment.
-SECRET_KEY = 'zzzzzzzzzzzzzzzzzzzzzzzzzzz'
+SECRET_KEY = 'asdfklasldkjfalsasdfasjhdflkjahsl'
 
 PAGE_FOOTER = ''
 
@@ -57,7 +58,7 @@ AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 
 # e.g. EUR, CAD, GBP, CHF, CNY, JPY
 REAL_WORLD_CURRENCY_CODE = 'USD'
-USE_POINTS = True
+USE_POINTS = False
 
 
 # e.g. en-gb, de-de, it-it, fr-fr.
@@ -130,7 +131,7 @@ SESSION_CONFIGS = [
     {
         'name': 'my_public_goods',
         'display_name': "Grumman Public Goods Game",
-        'num_demo_participants': 3,
+        'num_demo_participants': 4,
         'app_sequence': ['my_public_goods'],
     }
 ]

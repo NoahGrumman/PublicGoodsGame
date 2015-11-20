@@ -21,10 +21,12 @@ A public goods game for testing the effect of social rewards on norm enforcement
 
 class Constants(BaseConstants):
     name_in_url = 'PublicGoodsGame'
-    players_per_group = 3
+    players_per_group = 4
     num_rounds = 6
 
-    endowment = c(100)
+    endowment = c(20)
+    sanction_fee = c(1)
+    sanction_penalty = c(10)
     efficiency_factor = 1.8
 
 
@@ -54,7 +56,13 @@ class Player(BasePlayer):
     # </built-in>
 
     contribution = models.CurrencyField(min=0, max=Constants.endowment)
+    understanding_question_1 = models.CurrencyField(min=0)
+    understanding_question_2 = models.CurrencyField(min=0)
+    understanding_question_3 = models.CurrencyField(min=0)
+    understanding_question_4 = models.CurrencyField()
 
     def role(self):
         # you can make this depend of self.id_in_group
         return ''
+
+    

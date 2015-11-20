@@ -1,0 +1,79 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Introduction {% endblock %}
+
+{% block content %}
+
+	<script type="text/javascript">
+		$(document).ready(function(){
+		    $('[data-toggle="popover"]').popover({
+			    container: 'body'
+			}); 
+		});
+	</script>
+
+	<style type="text/css">
+	    .popover{
+	        max-width:600px;
+	    }
+	</style>
+
+	<h4>Please answer the following questions to confirm that you understand the <a href="#" data-trigger="hover" data-toggle="popover" data-placement="bottom" data-html="true" title="Instructions" data-content="
+		<ul>
+			<li>
+				Today you will be playing a <i>public goods</i> game.
+			</li>
+			<li>
+				There will be <b>two sessions</b> and <b>six rounds per session</b>, so you
+				will play a <b>total of 12 rounds</b>.
+			</li>
+			<li>
+				You have been <b>randomly assigned to a group</b>. Each group has <b>{{ Constants.players_per_group }}
+				participants</b>. Members of your group are distributed throughout the room and will remain anonymous
+				throughout this experiment. You will remain a part of this group for the duration of the experiment.
+			</li>
+			<li>
+				In each round, you will be given an <b>endowment of {{ Constants.endowment }}</b>
+				and will have <b>opportunity to contribute from that endowment
+				to the group</b>.
+			</li>
+			<li>
+				Once all {{ Constants.players_per_group }} members of your group
+				have decided how much to contribute, the <b>sum of contributions to the group
+				will be multiplied by {{ Constants.efficiency_factor }} and divided evenly
+				among all {{ Constants.players_per_group }} group members</b>.
+			</li>
+			<li>
+				Finally, a ranking of group members by the amount contributed to the group will be displayed
+				and <b>each group member will have the chance to sanction other group members for their
+				lack of contribution to the group</b>. It <b>costs {{ Constants.sanction_fee }} to
+				sanction another group member</b>, and the <b>group member being sanctioned will receive
+				a penalty of {{ Constants.sanction_penalty }}</b>.
+			</li>
+			<li>
+				At the end of this experiment, <b>one round will be randomly selected and participants
+				will be paid the amount that they ended that round with</b>.
+			</li>
+		</ul>
+	">rules</a> of the game:</h4>
+
+	<ol>
+		<li>
+			You decide to contribute $5 of your $20 endowment to the group, while the three other members of your group
+			elect to contribute $15 each. Thus, the sum of contributions to the group is $50.
+			{% formfield player.understanding_question_1 with label="Before sanctioning occurs for this round, how much money will be returned to each member of the group this round?"%}
+		</li>
+		<li>
+			Every player in your group contributes $15 of his/her $20 endowment to the group, meaning that a total of $60 is contributed to the group and $108 will be distributed back to the group.
+			{% formfield player.understanding_question_2 with label="Before sanctioning occurs, how much money does each group member have this round?"%}
+		</li>
+		<li>
+			You decide to contribute $10 of your $20 endowment to the group, but others contributed less and thus you receive only $5 back. You elect to sanction the member of your group that contributed the least. As you contributed most, no one elects to sanction you.
+			{% formfield player.understanding_question_3 with label="After sanctioning occurs, how much money do you have this round?"%}
+			{% formfield player.understanding_question_4 with label="How much money does the group member that you sanctioned lose because of this action?"%}
+		</li>
+	</ol>
+
+{% next_button %}
+
+{% endblock %}

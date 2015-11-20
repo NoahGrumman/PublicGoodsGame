@@ -1,0 +1,53 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Introduction {% endblock %}
+
+{% block content %}
+
+	<h4>Please read the following instructions carefully:</h4>
+
+	<ul>
+		<li>
+			Today you will be playing a <i>public goods</i> game.
+		</li>
+		<li>
+			There will be <b>two sessions</b> and <b>six rounds per session</b>, so you
+			will play a <b>total of 12 rounds</b>.
+		</li>
+		<li>
+			You have been <b>randomly assigned to a group</b>. Each group has <b>{{ Constants.players_per_group }}
+			participants</b>. Members of your group are distributed throughout the room and will remain anonymous
+			throughout this experiment. You will remain a part of this group for the duration of the experiment.
+		</li>
+		<li>
+			In each round, you will be given an <b>endowment of {{ Constants.endowment }}</b>
+			and will have <b>opportunity to contribute from that endowment
+			to the group</b>.
+		</li>
+		<li>
+			Once all {{ Constants.players_per_group }} members of your group
+			have decided how much to contribute, the <b>sum of contributions to the group
+			will be multiplied by {{ Constants.efficiency_factor }} and divided evenly
+			among all {{ Constants.players_per_group }} group members</b>.
+		</li>
+		<li>
+			Finally, a ranking of group members by the amount contributed to the group will be displayed
+			and <b>each group member will have the chance to sanction other group members for their
+			lack of contribution to the group</b>. It <b>costs {{ Constants.sanction_fee }} to
+			sanction another group member</b>, and the <b>group member being sanctioned will receive
+			a penalty of {{ Constants.sanction_penalty }}</b>.
+		</li>
+		<li>
+			At the end of this experiment, <b>one round will be randomly selected and participants
+			will be paid the amount that they ended that round with</b>.
+		</li>
+	</ul>
+
+	<p>
+		When you have finished reading the instructions, you may advance to the next page. You will be asked to answer a
+		few questions to confirm that you understand the rules of the game.
+	</p>
+
+{% next_button %}
+
+{% endblock %}
