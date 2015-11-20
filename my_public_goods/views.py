@@ -13,10 +13,16 @@ class Introduction(Page):
     form_model = models.Player
     form_fields = []
 
+    def is_displayed(self):
+        return self.subsession.round_number == 1
+
 class UnderstandingQuestions(Page):
 
     form_model = models.Player
     form_fields = ['understanding_question_1','understanding_question_2','understanding_question_3','understanding_question_4']
+
+    def is_displayed(self):
+        return self.subsession.round_number == 1
 
     def understanding_question_1_error_message(self, value):
         if not (value == 22.5):
@@ -35,27 +41,32 @@ class UnderstandingQuestions(Page):
             return 'Hint: refer to the sixth bullet point in the directions above.'
 
 class UnderstandingQuestionsWaitPage(WaitPage):
-	pass
+    def is_displayed(self):
+        return self.subsession.round_number == 1
 
 class Contribute(Page):
 
     form_model = models.Player
     form_fields = ['contribution']
 
-class ResultsWaitPage(WaitPage):
+class ContributeWaitPage(WaitPage):
+    pass
 
-    def after_all_players_arrive(self):
-        self.group.set_payoffs()
+class Sanction(Page):
+    pass
 
-class Results(Page):
+class SanctionWaitPage(WaitPage):
     pass
 
 
 page_sequence = [
 	Introduction,
-	UnderstandingQuestions,
-	UnderstandingQuestionsWaitPage,
-    Contribute,
-    ResultsWaitPage,
-    Results
+	# UnderstandingQuestions,
+	# UnderstandingQuestionsWaitPage,
+	Contribute,
+    # ContributeWaitPage,
+    Sanction,
+    # SanctionWaitPage,
+    RoundResults,
+    FinalResults
 ]

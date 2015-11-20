@@ -1,0 +1,54 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Round {{ subsession.round_number }}: Preliminary Results {% endblock %}
+
+{% block content %}
+
+<ul>
+	<li>
+    	You started with an <b> endowment of {{ Constants.endowment }}</b>, of which you  <b> contributed {{ player.contribution }}</b>.
+    </li>
+    <li>
+    	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>.
+    </li>
+    <li>
+    	You now have <b>{{ player.payoff }}</b>.
+    </li>
+    <li>
+    	Now, you may choose to sanction other participants in your group for failing to contribute their fair share to the group. <b> Sanctioning another group member will cost you $1 and cost the sanctioned member $10.</b>
+    </li>
+    <li>
+    	Participants are ranked by the size of their contribution, so #1 contributed the most and #4 contributed the least.
+    </li>
+</ul>
+
+<table class="table table-hover text-center" style="width:30%; margin: auto;">
+  <thead>
+  	<tr>
+  	<td>Member Rank</td>
+  	<td>Sanction</td>
+  	</tr>
+  </thead>
+  <tbody>
+	  <tr>
+	    <td>1</td>
+	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	  </tr>
+	  <tr>
+	    <td>2</td>
+	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	  </tr>
+	  <tr>
+	    <td>3</td>
+	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	  </tr>
+	  <tr>
+	    <td>4</td>
+	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	  </tr>
+  </tbody>
+</table>
+
+{% next_button %}
+
+{% endblock %}
