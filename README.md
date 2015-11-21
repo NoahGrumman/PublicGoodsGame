@@ -3,7 +3,7 @@
 ## Purpose
 A behavioral econommics lab experiment to test the effect of social rewards on norm enforcement. The experiment will be run in Fall 2015. Built using [oTree](https://github.com/oTree-org/oTree), an open-source Python platform for building lab experiments (10x better than [zTree](http://www.ztree.uzh.ch/index.html)).
 
-## To start locally
+## Run locally
 Make sure that you have Python 2.7 installed, then [install oTree](http://otree.readthedocs.org/en/latest/setup.html).
 ```
 git clone git@github.com:NoahGrumman/PublicGoodsGame.git
