@@ -15,7 +15,7 @@ if os.environ.get('OTREE_PRODUCTION') not in {None, '', '1'}:
     DEBUG = False
 else:
     DEBUG = True
-DEBUG = False
+DEBUG = True
 
 ADMIN_USERNAME = 'admin'
 ADMIN_PASSWORD = 'otree'

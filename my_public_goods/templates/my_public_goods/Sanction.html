@@ -22,33 +22,41 @@
     </li>
 </ul>
 
-<table class="table table-hover text-center" style="width:30%; margin: auto;">
+<table class="table table-hover text-center" style="width:40%; margin: auto;">
   <thead>
   	<tr>
   	<td>Member Rank</td>
-  	<td>Sanction</td>
+  	<td>Sanction?</td>
   	</tr>
   </thead>
   <tbody>
 	  <tr>
 	    <td>1</td>
-	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	    <td><label class="checkbox-inline">{% formfield player.sanctions_rank_1 with label="" %}</label></td>
 	  </tr>
 	  <tr>
 	    <td>2</td>
-	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	    <td><label class="checkbox-inline">{% formfield player.sanctions_rank_2 with label="" %}</label></td>
 	  </tr>
 	  <tr>
 	    <td>3</td>
-	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	    <td><label class="checkbox-inline">{% formfield player.sanctions_rank_3 with label="" %}</label></td>
 	  </tr>
 	  <tr>
 	    <td>4</td>
-	    <td><label class="checkbox-inline"><input type="checkbox" value=""></label></td>
+	    <td><label class="checkbox-inline">{% formfield player.sanctions_rank_4 with label="" %}</label></td>
 	  </tr>
   </tbody>
 </table>
 
+
+
 {% next_button %}
+
+<script type="text/javascript">
+
+// $('#sanctions_rank_2_id').checked = false;
+
+</script>
 
 {% endblock %}

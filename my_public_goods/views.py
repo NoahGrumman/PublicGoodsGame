@@ -50,13 +50,16 @@ class Contribute(Page):
     form_fields = ['contribution']
 
 class ContributeWaitPage(WaitPage):
-    pass
+    def after_all_players_arrive(self):
+        self.subsession.set_preliminary_payoffs()
 
 class Sanction(Page):
-    pass
+    form_model = models.Player
+    form_fields = ['sanctions_rank_1','sanctions_rank_2','sanctions_rank_3','sanctions_rank_4']
 
 class SanctionWaitPage(WaitPage):
-    pass
+    def after_all_players_arrive(self):
+        self.subsession.set_final_payoffs()
 
 class RoundResults(Page):
     pass

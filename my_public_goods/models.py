@@ -31,22 +31,28 @@ class Constants(BaseConstants):
 
 
 class Subsession(BaseSubsession):
-    pass
+    sanctions = []
+
+    total_contribution = models.CurrencyField()
+    individual_share = models.CurrencyField()
+    
+    def set_preliminary_payoffs(self):
+        self.total_contribution = sum([p.contribution for p in self.get_players()])
+        self.individual_share = self.total_contribution * Constants.efficiency_factor / Constants.players_per_group
+        for p in self.get_players():
+            p.payoff = Constants.endowment - p.contribution + self.individual_share
+
+    def set_final_payoffs(self):
+        self.total_contribution = sum([p.contribution for p in self.get_players()])
+        self.individual_share = self.total_contribution * Constants.efficiency_factor / Constants.players_per_group
+        for p in self.get_players():
+            p.payoff = Constants.endowment - p.contribution + self.individual_share
 
 
 class Group(BaseGroup):
     # <built-in>
     subsession = models.ForeignKey(Subsession)
     # </built-in>
-
-    total_contribution = models.CurrencyField()
-    individual_share = models.CurrencyField()
-
-    def set_payoffs(self):
-        self.total_contribution = sum([p.contribution for p in self.get_players()])
-        self.individual_share = self.total_contribution * Constants.efficiency_factor / Constants.players_per_group
-        for p in self.get_players():
-            p.payoff = Constants.endowment - p.contribution + self.individual_share
 
 
 class Player(BasePlayer):
@@ -60,6 +66,11 @@ class Player(BasePlayer):
     understanding_question_2 = models.CurrencyField(min=0)
     understanding_question_3 = models.CurrencyField(min=0)
     understanding_question_4 = models.CurrencyField()
+
+    sanctions_rank_1 = models.BooleanField()
+    sanctions_rank_2 = models.BooleanField()
+    sanctions_rank_3 = models.BooleanField()
+    sanctions_rank_4 = models.BooleanField()
 
     def role(self):
         # you can make this depend of self.id_in_group
