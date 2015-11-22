@@ -51,7 +51,7 @@ class Contribute(Page):
 
 class ContributeWaitPage(WaitPage):
     def after_all_players_arrive(self):
-        self.subsession.set_preliminary_payoffs()
+        self.group.set_preliminary_payoffs()
 
 class Sanction(Page):
     form_model = models.Player
@@ -59,7 +59,7 @@ class Sanction(Page):
 
 class SanctionWaitPage(WaitPage):
     def after_all_players_arrive(self):
-        self.subsession.set_final_payoffs()
+        self.group.set_final_payoffs()
 
 class RoundResults(Page):
     pass
@@ -70,13 +70,13 @@ class FinalResults(Page):
 
 
 page_sequence = [
-	Introduction,
+	# Introduction,
 	# UnderstandingQuestions,
 	# UnderstandingQuestionsWaitPage,
 	Contribute,
-    # ContributeWaitPage,
+    ContributeWaitPage,
     Sanction,
-    # SanctionWaitPage,
+    SanctionWaitPage,
     RoundResults,
     FinalResults
 ]

@@ -12,10 +12,10 @@
     	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>.
     </li>
     <li>
-      You sanctioned _ other group members, at a cost of $1 per sanction.
+      You sanctioned {{ player.num_sanctions }} other group members, at a cost of $1 per sanction.
     </li>
     <li>
-      You were sanctioned by _ other group members, costing you $10 per sanction.
+      You were sanctioned by {{ player.num_sanctioned }} other group members, costing you $10 per sanction.
     </li>
     <li>
     	You now have <b>{{ player.payoff }}</b>.
