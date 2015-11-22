@@ -30,6 +30,8 @@ class Constants(BaseConstants):
     sanction_penalty = c(10)
     efficiency_factor = 1.8
 
+    contribution_reward = c(0.25)
+
 
 class Subsession(BaseSubsession):
     pass
@@ -46,7 +48,7 @@ class Group(BaseGroup):
     def set_preliminary_payoffs(self):
         contributions = {p : p.contribution for p in self.get_players()}
         rank_text = ["","second-","third-","fourth-"]
-        sorted_contributions = sorted(contributions.items(), key=operator.itemgetter(1))
+        sorted_contributions = sorted(contributions.items(), key=operator.itemgetter(1), reverse=True)
         for entry in sorted_contributions:
             entry[0].rank = sorted_contributions.index(entry)
             entry[0].rank_text = rank_text[sorted_contributions.index(entry)]
@@ -64,7 +66,6 @@ class Group(BaseGroup):
             p.num_sanctioned = 0
 
         for p in self.get_players():
-            p.payoff = Constants.endowment - p.contribution + self.individual_share
             sanctions = 0
             if p.sanctions_rank_1:
                 sanctions += 1
@@ -79,6 +80,9 @@ class Group(BaseGroup):
                 sanctions += 1
                 sanctioned[4-1].num_sanctioned += 1
             p.num_sanctions = sanctions
+
+        for p in self.get_players():
+            p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)
 
 
 class Player(BasePlayer):

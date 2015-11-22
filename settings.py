@@ -11,10 +11,6 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 # the environment variable OTREE_PRODUCTION controls whether Django runs in
 # DEBUG mode. If OTREE_PRODUCTION==1, then DEBUG=False
 OTREE_PRODUCTION = 1
-if os.environ.get('OTREE_PRODUCTION') not in {None, '', '1'}:
-    DEBUG = False
-else:
-    DEBUG = True
 DEBUG = True
 
 ADMIN_USERNAME = 'admin'
@@ -75,8 +71,8 @@ DEMO_PAGE_INTRO_TEXT = """
 <ul>
     <li>
         <a href="https://github.com/NoahGrumman/PublicGoodsGame" target="_blank">
-            Source code
-        </a> for this game
+            Source (GitHub)
+        </a>
     </li>
     <li>
         <a href="http://www.otree.org/" target="_blank">
