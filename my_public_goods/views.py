@@ -44,6 +44,7 @@ class UnderstandingQuestionsWaitPage(WaitPage):
     def is_displayed(self):
         return self.subsession.round_number == 1
 
+
 class Contribute(Page):
 
     form_model = models.Player
@@ -65,16 +66,16 @@ class RoundResults(Page):
     pass
 
 class MonetaryTreatmentExplanation(Page):
-	def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.treatment_group == 'Monetary'
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.participant.vars['treatment_group'] == 'Monetary'
 
 class CandyTreatmentExplanation(Page):
-	def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.treatment_group == 'Candy'
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.participant.vars['treatment_group'] == 'Candy'
 
 class MonetizedCandyTreatmentExplanation(Page):
-	def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0]  and self.player.treatment_group == 'Monetized Candy'
+    def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0]  and self.player.participant.vars['treatment_group'] == 'Monetized Candy'
 
 class FinalResults(Page):
     def is_displayed(self):
@@ -83,15 +84,15 @@ class FinalResults(Page):
 
 page_sequence = [
 	Introduction,
-	UnderstandingQuestions,
-	UnderstandingQuestionsWaitPage,
+	# UnderstandingQuestions,
+	# UnderstandingQuestionsWaitPage,
 	MonetaryTreatmentExplanation,
 	CandyTreatmentExplanation,
 	MonetizedCandyTreatmentExplanation,
 	Contribute,
-    ContributeWaitPage,
-    Sanction,
-    SanctionWaitPage,
+    # ContributeWaitPage,
+    # Sanction,
+    # SanctionWaitPage,
     RoundResults,
     FinalResults
 ]
