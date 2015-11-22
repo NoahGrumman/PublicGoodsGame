@@ -64,6 +64,18 @@ class SanctionWaitPage(WaitPage):
 class RoundResults(Page):
     pass
 
+class MonetaryTreatmentExplanation(Page):
+	def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.treatment_group == 'Monetary'
+
+class CandyTreatmentExplanation(Page):
+	def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.treatment_group == 'Candy'
+
+class MonetizedCandyTreatmentExplanation(Page):
+	def is_displayed(self):
+        return self.subsession.round_number == Constants.treatment_rounds[0]  and self.player.treatment_group == 'Monetized Candy'
+
 class FinalResults(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
@@ -73,6 +85,9 @@ page_sequence = [
 	Introduction,
 	UnderstandingQuestions,
 	UnderstandingQuestionsWaitPage,
+	MonetaryTreatmentExplanation,
+	CandyTreatmentExplanation,
+	MonetizedCandyTreatmentExplanation,
 	Contribute,
     ContributeWaitPage,
     Sanction,

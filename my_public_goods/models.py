@@ -24,7 +24,7 @@ class Constants(BaseConstants):
     name_in_url = 'PublicGoodsGame'
     players_per_group = 4
     num_rounds = 6
-    monetary_reward_rounds = range(1,7) # note that rounds are 1-indexed, not zero-indexed
+    treatment_rounds = range(4,7) # note that rounds are 1-indexed, not zero-indexed
     candy_reward_rounds = []
 
     endowment = c(20)
@@ -92,6 +92,8 @@ class Player(BasePlayer):
     subsession = models.ForeignKey(Subsession)
     group = models.ForeignKey(Group, null=True)
     # </built-in>
+
+    treatment_group = models.CharField()
 
     contribution = models.CurrencyField(min=0, max=Constants.endowment)
     understanding_question_1 = models.CurrencyField(min=0)

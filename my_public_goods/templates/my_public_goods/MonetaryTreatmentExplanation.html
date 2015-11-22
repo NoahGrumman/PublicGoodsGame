@@ -1,0 +1,22 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Important {% endblock %}
+
+{% block content %}
+
+	<h4>Please read the following instructions carefully:</h4>
+
+	<ul>
+		<li>
+			You will now be given a small reward for contributing to the group: <b>for every $1 that you contribute to the group,
+			you will be rewarded with {{ Constants.contribution_reward }}</b>.
+		</li>
+	</ul>
+
+	<p>
+		Note: nothing else about the game has changed.
+	</p>
+
+{% next_button %}
+
+{% endblock %}

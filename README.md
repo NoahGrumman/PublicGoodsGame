@@ -5,6 +5,7 @@ A behavioral econommics lab experiment to test the effect of social rewards on n
 
 ## Run locally
 Make sure that you have Python 2.7 installed, then [install oTree](http://otree.readthedocs.org/en/latest/setup.html).
+Then, enter the following:
 ```
 git clone git@github.com:NoahGrumman/PublicGoodsGame.git
 cd PublicGoodsGame
