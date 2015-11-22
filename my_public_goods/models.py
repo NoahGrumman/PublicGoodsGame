@@ -24,6 +24,8 @@ class Constants(BaseConstants):
     name_in_url = 'PublicGoodsGame'
     players_per_group = 4
     num_rounds = 6
+    monetary_reward_rounds = range(1,7) # note that rounds are 1-indexed, not zero-indexed
+    candy_reward_rounds = []
 
     endowment = c(20)
     sanction_fee = c(1)

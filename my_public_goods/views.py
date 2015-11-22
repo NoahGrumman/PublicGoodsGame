@@ -70,9 +70,9 @@ class FinalResults(Page):
 
 
 page_sequence = [
-	# Introduction,
-	# UnderstandingQuestions,
-	# UnderstandingQuestionsWaitPage,
+	Introduction,
+	UnderstandingQuestions,
+	UnderstandingQuestionsWaitPage,
 	Contribute,
     ContributeWaitPage,
     Sanction,
