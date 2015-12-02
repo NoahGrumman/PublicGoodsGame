@@ -24,7 +24,6 @@ class Constants(BaseConstants):
     name_in_url = 'PublicGoodsGame'
     players_per_group = 4
     num_rounds = 6
-    treatment_rounds = range(4,7) # note that rounds are 1-indexed, not zero-indexed
 
     endowment = c(15)
     sanction_fee = c(1)
@@ -44,7 +43,9 @@ class Subsession(BaseSubsession):
             for group in self.get_groups():
                 players = group.get_players()
                 for player in players:
-                    player.participant.vars['treatment_group'] = treatments[treatment_counter % 3]
+                    player.participant.vars['treatment_group_1'] = treatments[treatment_counter % 3]
+                    player.participant.vars['treatment_group_2'] = treatments[(treatment_counter + 1) % 3]
+                    player.participant.vars['treatment_group_3'] = treatments[(treatment_counter + 2) % 3]
                 treatment_counter += 1
 
 class Group(BaseGroup):
@@ -55,18 +56,37 @@ class Group(BaseGroup):
     total_contribution = models.CurrencyField()
     individual_share = models.CurrencyField()
 
+    rank_1_contribution = models.CurrencyField()
+    rank_2_contribution = models.CurrencyField()
+    rank_3_contribution = models.CurrencyField()
+    rank_4_contribution = models.CurrencyField()
+
+    def rank_1():
+        for player in self.get_players():
+            if player.rank == 1:
+                return player
+
     def set_preliminary_payoffs(self):
-        contributions = {p : p.contribution for p in self.get_players()}
-        rank_text = ["","second-","third-","fourth-"]
-        sorted_contributions = sorted(contributions.items(), key=operator.itemgetter(1), reverse=True)
-        for entry in sorted_contributions:
-            entry[0].rank = sorted_contributions.index(entry)
-            entry[0].rank_text = rank_text[sorted_contributions.index(entry)]
+        contributions = [(p,p.contribution) for p in self.get_players()]
+        random.shuffle(contributions)
+        for entry in contributions:
+            entry[0].rank = contributions.index(entry)
+            if contributions.index(entry) == 0:
+                self.rank_1_contribution = entry[1]
+            elif contributions.index(entry) == 1:
+                self.rank_2_contribution = entry[1]
+            elif contributions.index(entry) == 2:
+                self.rank_3_contribution = entry[1]
+            elif contributions.index(entry) == 3:
+                self.rank_4_contribution = entry[1]
 
         self.total_contribution = sum([p.contribution for p in self.get_players()])
         self.individual_share = self.total_contribution * Constants.efficiency_factor / Constants.players_per_group
         for p in self.get_players():
-            p.initial_payoff = Constants.endowment - p.contribution + self.individual_share
+            if (self.subsession.round_number in range(1,5) and p.participant.vars['treatment_group_1'] == 'Monetary') or (self.subsession.round_number in range(5,9) and p.participant.vars['treatment_group_2'] == 'Monetary') or (self.subsession.round_number in range(9,13) and p.participant.vars['treatment_group_3'] == 'Monetary'):        
+                p.initial_payoff = Constants.endowment - p.contribution + self.individual_share + (Constants.contribution_reward * p.contribution)
+            else:
+                p.initial_payoff = Constants.endowment - p.contribution + self.individual_share
 
     def set_final_payoffs(self):
         self.total_contribution = sum([p.contribution for p in self.get_players()])
@@ -92,7 +112,10 @@ class Group(BaseGroup):
             p.num_sanctions = sanctions
 
         for p in self.get_players():
-            p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)
+            if (self.subsession.round_number in range(1,5) and p.participant.vars['treatment_group_1'] == 'Monetary') or (self.subsession.round_number in range(5,9) and p.participant.vars['treatment_group_2'] == 'Monetary') or (self.subsession.round_number in range(9,13) and p.participant.vars['treatment_group_3'] == 'Monetary'):
+                p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)  + (Constants.contribution_reward * p.contribution)
+            else:
+                p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)
 
 
 class Player(BasePlayer):
@@ -101,7 +124,9 @@ class Player(BasePlayer):
     group = models.ForeignKey(Group, null=True)
     # </built-in>
 
-    treatment_group = models.CharField()
+    treatment_group_1 = models.CharField()
+    treatment_group_2 = models.CharField()
+    treatment_group_3 = models.CharField()
 
     contribution = models.CurrencyField(min=0, max=Constants.endowment)
     understanding_question_1 = models.CurrencyField(min=0)
@@ -116,7 +141,6 @@ class Player(BasePlayer):
 
     initial_payoff = models.CurrencyField()
     rank = models.IntegerField()
-    rank_text = models.CharField()
     num_sanctions = models.IntegerField()
     num_sanctioned = models.IntegerField()
 

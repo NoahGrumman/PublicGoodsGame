@@ -67,15 +67,27 @@ class RoundResults(Page):
 
 class MonetaryTreatmentExplanation(Page):
     def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.participant.vars['treatment_group'] == 'Monetary'
+        round_number = self.subsession.round_number
+        treatment_group_1 = self.player.participant.vars['treatment_group_1']
+        treatment_group_2 = self.player.participant.vars['treatment_group_2']
+        treatment_group_3 = self.player.participant.vars['treatment_group_3']
+        return (round_number == 1 and treatment_group_1 == 'Monetary') or (round_number == 5 and treatment_group_2 == 'Monetary') or (round_number == 9 and treatment_group_3 == 'Monetary')
 
 class CandyTreatmentExplanation(Page):
     def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.participant.vars['treatment_group'] == 'Candy'
+        round_number = self.subsession.round_number
+        treatment_group_1 = self.player.participant.vars['treatment_group_1']
+        treatment_group_2 = self.player.participant.vars['treatment_group_2']
+        treatment_group_3 = self.player.participant.vars['treatment_group_3']
+        return (round_number == 1 and treatment_group_1 == 'Candy') or (round_number == 5 and treatment_group_2 == 'Candy') or (round_number == 9 and treatment_group_3 == 'Candy')
 
 class ControlExplanation(Page):
     def is_displayed(self):
-        return self.subsession.round_number == Constants.treatment_rounds[0]  and self.player.participant.vars['treatment_group'] == 'Monetized Candy'
+        round_number = self.subsession.round_number
+        treatment_group_1 = self.player.participant.vars['treatment_group_1']
+        treatment_group_2 = self.player.participant.vars['treatment_group_2']
+        treatment_group_3 = self.player.participant.vars['treatment_group_3']
+        return (round_number == 1 and treatment_group_1 == 'Control') or (round_number == 5 and treatment_group_2 == 'Control') or (round_number == 9 and treatment_group_3 == 'Control')
 
 class FinalResults(Page):
     def is_displayed(self):
@@ -90,9 +102,9 @@ page_sequence = [
 	MonetaryTreatmentExplanation,
 	CandyTreatmentExplanation,
 	Contribute,
-    # ContributeWaitPage,
-    # Sanction,
-    # SanctionWaitPage,
+    ContributeWaitPage,
+    Sanction,
+    SanctionWaitPage,
     RoundResults,
     FinalResults
 ]

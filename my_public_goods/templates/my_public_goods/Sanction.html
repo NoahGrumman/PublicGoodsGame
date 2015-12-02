@@ -12,26 +12,23 @@
     	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>. Thus you currently have <b>{{ player.initial_payoff }}</b>.
     </li>
     <li>
-    	You made the <b>{{ player.rank_text }}largest contribution to the group</b>.
+    	Now, you may choose to sanction other participants in your group for failing to contribute their fair share to the group. <b> Sanctioning another group member will cost you {{ Constants.sanction_fee }} and cost the sanctioned member {{ Constants.sanction_penalty }}.</b>
     </li>
     <li>
-    	Now, you may choose to sanction other participants in your group for failing to contribute their fair share to the group. <b> Sanctioning another group member will cost you $1 and cost the sanctioned member $10.</b>
-    </li>
-    <li>
-    	Participants are ranked by the size of their contribution, so #1 contributed the most and #4 contributed the least.
+    	The contribution of each group member is displayed in <b>random order</b> below.
     </li>
 </ul>
 
 <table class="table table-hover text-center" style="width:40%; margin: auto;">
   <thead>
   	<tr>
-  	<td>Member Rank</td>
+  	<td>Contribution</td>
   	<td>Sanction?</td>
   	</tr>
   </thead>
   <tbody>
 	  <tr>
-	    <td>1</td>
+	    <td> {{ group.rank_1_contribution }} </td>
 	    <td>
 		    {% if player.rank != 0 %}
 		    <label class="checkbox-inline">{% formfield player.sanctions_rank_1 with label="" %}</label>
@@ -47,7 +44,7 @@
 	    </td>
 	  </tr>
 	  <tr>
-	    <td>2</td>
+	    <td> {{ group.rank_2_contribution }} </td>
 	    <td>
 		    {% if player.rank != 1 %}
 		    <label class="checkbox-inline">{% formfield player.sanctions_rank_2 with label="" %}</label>
@@ -60,7 +57,7 @@
 	    </td>
 	  </tr>
 	  <tr>
-	    <td>3</td>
+	    <td> {{ group.rank_3_contribution }} </td>
 	    <td>
 		    {% if player.rank != 2 %}
 		    <label class="checkbox-inline">{% formfield player.sanctions_rank_3 with label="" %}</label>
@@ -73,7 +70,7 @@
 	    </td>
 	  </tr>
 	  <tr>
-	    <td>4</td>
+	    <td> {{ group.rank_4_contribution }} </td>
 	    <td>
 		    {% if player.rank != 3 %}
 		    <label class="checkbox-inline">{% formfield player.sanctions_rank_4 with label="" %}</label>
