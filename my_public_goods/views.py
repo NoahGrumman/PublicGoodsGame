@@ -73,7 +73,7 @@ class CandyTreatmentExplanation(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.treatment_rounds[0] and self.player.participant.vars['treatment_group'] == 'Candy'
 
-class MonetizedCandyTreatmentExplanation(Page):
+class ControlExplanation(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.treatment_rounds[0]  and self.player.participant.vars['treatment_group'] == 'Monetized Candy'
 
@@ -86,9 +86,9 @@ page_sequence = [
 	Introduction,
 	# UnderstandingQuestions,
 	# UnderstandingQuestionsWaitPage,
+    ControlExplanation,
 	MonetaryTreatmentExplanation,
 	CandyTreatmentExplanation,
-	MonetizedCandyTreatmentExplanation,
 	Contribute,
     # ContributeWaitPage,
     # Sanction,

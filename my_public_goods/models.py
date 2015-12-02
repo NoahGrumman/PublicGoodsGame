@@ -26,19 +26,20 @@ class Constants(BaseConstants):
     num_rounds = 6
     treatment_rounds = range(4,7) # note that rounds are 1-indexed, not zero-indexed
 
-    endowment = c(20)
+    endowment = c(15)
     sanction_fee = c(1)
-    sanction_penalty = c(10)
+    sanction_penalty = c(4)
     efficiency_factor = 1.8
 
-    contribution_reward = c(0.25)
-
+    contribution_reward = c(0.05)
+    candy_1 = "Peanut M&M"
+    candy_2 = "Swedish Fish"
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):
         if self.round_number == 1:
             num_groups = len(self.get_groups())
-            treatments = ['Monetary','Candy','Monetized Candy']
+            treatments = ['Control','Monetary','Candy']
             treatment_counter = 0
             for group in self.get_groups():
                 players = group.get_players()
