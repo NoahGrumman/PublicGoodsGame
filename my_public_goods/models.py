@@ -32,7 +32,7 @@ class Constants(BaseConstants):
 
     contribution_reward = c(0.05)
     candy_1 = "Mini-snickers"
-    candy_2 = "Starbursts"
+    candy_2 = "Starburst"
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):

@@ -1,16 +1,24 @@
 {% extends "global/Base.html" %} {% load staticfiles otree_tags %}
 
-{% block title %} Round {{ subsession.round_number }}: Contributions {% endblock %}
+{% block title %} Round {{ subsession.round_number }}: Contribution Stage {% endblock %}
 
 {% block content %}
 
-<p>
-    This is a public goods game with
-    {{ Constants.players_per_group }} players per group,
-    an endowment of {{ Constants.endowment }},
-    and an efficiency factor of {{ Constants.efficiency_factor }}.
-</p>
-
+	<ul>
+		<li>
+			You have been given an <b>endowment of {{ Constants.endowment }}</b> and have the
+			<b>opportunity to contribute from that endowment to the group</b>.
+		</li>
+		<li>
+			The <b>sum of contributions</b> to the group will be <b>multiplied by {{ Constants.efficiency_factor }}</b>
+			and <b>divided evenly among all {{ Constants.players_per_group }} group members</b>.
+		</li>
+		<li>
+			Each group member will have the chance to sanction other group members for their lack
+			of contribution to the group. It <b>costs {{ Constants.sanction_fee }} to sanction another group member</b>,
+			and the <b>group member being sanctioned will receive a penalty of {{ Constants.sanction_penalty }}</b>.
+		</li>
+	</ul>
 
 {% formfield player.contribution with label="How much will you contribute?" %}
 
