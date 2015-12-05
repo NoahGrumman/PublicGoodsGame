@@ -1,0 +1,34 @@
+{% extends "global/Base.html" %} {% load staticfiles otree_tags %}
+
+{% block title %} Questionnaire {% endblock %}
+
+{% block content %}
+
+	<h4>Please answer the following questions:</h4>
+
+	Label: {{ player.id }}
+
+	<ol>
+		<li>
+			{% formfield player.questionnaire_1 with label="How much money do you think that Mini-Snickers cost?"%}
+		</li>
+		<li>
+			{% formfield player.questionnaire_2 with label="How much money do you think that Starbursts cost?"%}
+		</li>
+		<li>
+			{% formfield player.questionnaire_3 with label="How old are you"%}
+		</li>
+		<li>
+			{% formfield player.questionnaire_4 with label="What is your major?"%}
+		</li>
+		<li>
+			{% formfield player.questionnaire_5 with label="How many economics experiments have you participated in before?"%}
+		</li>
+		<li>
+			{% formfield player.questionnaire_6 with label="What do you think that this experiment is trying to measure?"%}
+		</li>
+	</ol>
+
+{% next_button %}
+
+{% endblock %}

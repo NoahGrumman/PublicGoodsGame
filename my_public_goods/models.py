@@ -4,6 +4,7 @@ from __future__ import division
 
 import random
 import operator
+import sys
 
 import otree.models
 from otree.db import models
@@ -34,6 +35,8 @@ class Constants(BaseConstants):
     candy_1 = "Mini-snickers"
     candy_2 = "Starburst"
 
+    paying_round = 2
+
 class Subsession(BaseSubsession):
     def before_session_starts(self):
         if self.round_number == 1:
@@ -60,11 +63,6 @@ class Group(BaseGroup):
     rank_2_contribution = models.CurrencyField()
     rank_3_contribution = models.CurrencyField()
     rank_4_contribution = models.CurrencyField()
-
-    def rank_1():
-        for player in self.get_players():
-            if player.rank == 1:
-                return player
 
     def set_preliminary_payoffs(self):
         contributions = [(p,p.contribution) for p in self.get_players()]
@@ -113,10 +111,11 @@ class Group(BaseGroup):
 
         for p in self.get_players():
             if (self.subsession.round_number in range(1,5) and p.participant.vars['treatment_group_1'] == 'Monetary') or (self.subsession.round_number in range(5,9) and p.participant.vars['treatment_group_2'] == 'Monetary') or (self.subsession.round_number in range(9,13) and p.participant.vars['treatment_group_3'] == 'Monetary'):
-                p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)  + (Constants.contribution_reward * p.contribution)
+                p.final_payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)  + (Constants.contribution_reward * p.contribution)
             else:
-                p.payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)
-
+                p.final_payoff = Constants.endowment - p.contribution + self.individual_share - (Constants.sanction_fee * p.num_sanctions) - (Constants.sanction_penalty * p.num_sanctioned)
+            if self.subsession.round_number == Constants.paying_round:
+                p.payoff = p.final_payoff
 
 class Player(BasePlayer):
     # <built-in>
@@ -134,12 +133,20 @@ class Player(BasePlayer):
     understanding_question_3 = models.CurrencyField(min=0)
     understanding_question_4 = models.CurrencyField()
 
+    questionnaire_1 = models.CurrencyField(min=0)
+    questionnaire_2 = models.CurrencyField(min=0)
+    questionnaire_3 = models.IntegerField()
+    questionnaire_4 = models.CharField()
+    questionnaire_5 = models.IntegerField()
+    questionnaire_6 = models.TextField()
+
     sanctions_rank_1 = models.BooleanField(blank=True,default=False)
     sanctions_rank_2 = models.BooleanField(blank=True,default=False)
     sanctions_rank_3 = models.BooleanField(blank=True,default=False)
     sanctions_rank_4 = models.BooleanField(blank=True,default=False)
 
     initial_payoff = models.CurrencyField()
+    final_payoff = models.CurrencyField()
     rank = models.IntegerField()
     num_sanctions = models.IntegerField()
     num_sanctioned = models.IntegerField()

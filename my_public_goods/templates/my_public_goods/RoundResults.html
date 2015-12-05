@@ -6,7 +6,7 @@
 
 <ul>
 	<li>
-    	You started with an <b> endowment of {{ Constants.endowment }}</b>, of which you  <b> contributed {{ player.contribution }}</b>.
+    	You started with an <b> endowment of {{ Constants.endowment }}</b>, of which you  <b> contributed {{ player.contribution }}</b> to the group.
   </li>
     <li>
     	Your group contributed a <b>total of {{ group.total_contribution }}</b>, resulting in an <b>individual share of {{ group.individual_share }}</b>.
@@ -18,7 +18,7 @@
       You were sanctioned by {{ player.num_sanctioned }} other group members, costing you $10 per sanction.
     </li>
     <li>
-    	You now have <b>{{ player.payoff }}</b>.
+    	Therefore, you will earn <b>{{ player.final_payoff }} if this round is chosen for payment (in addition to the $5 show-up fee)</b>.
     </li>
 </ul>
 
