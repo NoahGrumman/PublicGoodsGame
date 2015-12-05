@@ -26,6 +26,7 @@ class Constants(BaseConstants):
     players_per_group = 4
     num_rounds = 12
 
+
     endowment = c(10)
     sanction_fee = c(1)
     sanction_penalty = c(3)
@@ -47,8 +48,11 @@ class Subsession(BaseSubsession):
                 players = group.get_players()
                 for player in players:
                     player.participant.vars['treatment_group_1'] = treatments[treatment_counter % 3]
+                    player.treatment_group_1 = treatments[treatment_counter % 3]
                     player.participant.vars['treatment_group_2'] = treatments[(treatment_counter + 1) % 3]
+                    player.treatment_group_2 = treatments[(treatment_counter + 1) % 3]
                     player.participant.vars['treatment_group_3'] = treatments[(treatment_counter + 2) % 3]
+                    player.treatment_group_3 = treatments[(treatment_counter + 2) % 3]
                 treatment_counter += 1
 
 class Group(BaseGroup):
