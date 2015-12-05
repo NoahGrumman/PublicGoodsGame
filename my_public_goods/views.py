@@ -19,26 +19,34 @@ class Introduction(Page):
 class UnderstandingQuestions(Page):
 
     form_model = models.Player
-    form_fields = ['understanding_question_1','understanding_question_2','understanding_question_3','understanding_question_4']
+    form_fields = ['understanding_question_1','understanding_question_2','understanding_question_3','understanding_question_4','understanding_question_5','understanding_question_6']
 
     def is_displayed(self):
         return self.subsession.round_number == 1
 
     def understanding_question_1_error_message(self, value):
-        if not (value == 22.5):
-            return 'Hint: a total of $50 was contributed to the group. This amount will be multiplied by 1.8 and then divided evenly between the members of the group.'
+        if not (value == 20):
+            return 'Hint: a total of $40 was contributed to the group. This amount will be multiplied by 2 and then divided evenly between the members of the group.'
 
     def understanding_question_2_error_message(self, value):
-        if not (value == 32.0):
-            return 'Hint: $108 will be divided evenly between the members of the group.'
+        if not (value == 20):
+            return 'Hint: refer to the previous question.'
 
     def understanding_question_3_error_message(self, value):
-        if not (value == 14.0):
-            return 'Hint: you begin with a $20 endowment, contribute $10, receive $5 back, and then sanction another group member at a cost of $1.'
+        if not (value == 0):
+            return 'Hint: a total of $0 was contributed to the group. This amount will be multiplied by 2 and then divided evenly between the members of the group.'
 
     def understanding_question_4_error_message(self, value):
         if not (value == 10.0):
-            return 'Hint: refer to the sixth bullet point in the directions above.'
+            return 'Hint: since no one contributed to the group, each group member will receive the amount of their initial endowment.'
+
+    def understanding_question_5_error_message(self, value):
+        if not (value == 1):
+            return 'Hint: refer the instructions above.'
+
+    def understanding_question_6_error_message(self, value):
+        if not (value == 3):
+            return 'Hint: refer to the instructions above.'
 
 class UnderstandingQuestionsWaitPage(WaitPage):
     def is_displayed(self):
@@ -88,10 +96,6 @@ class ControlExplanation(Page):
         treatment_group_3 = self.player.participant.vars['treatment_group_3']
         return (round_number in range(1,5) and treatment_group_1 == 'Control') or (round_number in range(5,9) and treatment_group_2 == 'Control') or (round_number in range(9,13) and treatment_group_3 == 'Control')
 
-class FinalResults(Page):
-    def is_displayed(self):
-        return self.subsession.round_number == Constants.num_rounds
-
 class Questionnaire(Page):
 
     form_model = models.Player
@@ -100,30 +104,14 @@ class Questionnaire(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
 
-    def understanding_question_1_error_message(self, value):
-        if not (value == 22.5):
-            return 'Hint: a total of $50 was contributed to the group. This amount will be multiplied by 1.8 and then divided evenly between the members of the group.'
-
-    def understanding_question_2_error_message(self, value):
-        if not (value == 32.0):
-            return 'Hint: $108 will be divided evenly between the members of the group.'
-
-    def understanding_question_3_error_message(self, value):
-        if not (value == 14.0):
-            return 'Hint: you begin with a $20 endowment, contribute $10, receive $5 back, and then sanction another group member at a cost of $1.'
-
-    def understanding_question_4_error_message(self, value):
-        if not (value == 10.0):
-            return 'Hint: refer to the sixth bullet point in the directions above.'
-
 class Finished(Page):
     def is_displayed(self):
         return self.subsession.round_number == Constants.num_rounds
 
 page_sequence = [
 	Introduction,
-	# UnderstandingQuestions,
-	# UnderstandingQuestionsWaitPage,
+	UnderstandingQuestions,
+	UnderstandingQuestionsWaitPage,
     ControlExplanation,
 	MonetaryTreatmentExplanation,
 	CandyTreatmentExplanation,
@@ -132,7 +120,6 @@ page_sequence = [
     Sanction,
     SanctionWaitPage,
     RoundResults,
-    FinalResults,
     Questionnaire,
     Finished
 ]

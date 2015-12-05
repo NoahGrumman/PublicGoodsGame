@@ -59,18 +59,23 @@
 
 	<ol>
 		<li>
-			You decide to contribute $5 of your $20 endowment to the group, while the three other members of your group
-			elect to contribute $15 each. Thus, the sum of contributions to the group is $50.
+			You decide to contribute all {{ Constants.endowment }} of your {{ Constants.endowment }} endowment
+			to the group, and all three other three members of your group also decide to contribute {{ Constants.endowment }}
+			of their {{ Constants.endowment }} endowments.
 			{% formfield player.understanding_question_1 with label="Before sanctioning occurs for this round, how much money will be returned to each member of the group this round?"%}
+			{% formfield player.understanding_question_2 with label="If no sanctioning occurs and this round is selected for payment at the end of the experiment, how much will each group member receive (not including the show-up fee)?"%}
 		</li>
 		<li>
-			Every player in your group contributes $15 of his/her $20 endowment to the group, meaning that a total of $60 is contributed to the group and $108 will be distributed back to the group.
-			{% formfield player.understanding_question_2 with label="Before sanctioning occurs, how much money does each group member have this round?"%}
+			You decide to contribute $0 of your {{ Constants.endowment }} endowment to the group, and all three other three members
+			of your group decide to contribute $0 of their {{ Constants.endowment }} endowments.
+			{% formfield player.understanding_question_3 with label="Before sanctioning occurs for this round, how much money will be returned to each member of the group this round?"%}
+			{% formfield player.understanding_question_4 with label="If no sanctioning occurs and this round is selected for payment at the end of the experiment, how much will each group member receive?"%}
 		</li>
 		<li>
-			You decide to contribute $10 of your $20 endowment to the group, but others contributed less and thus you receive only $5 back. You elect to sanction the member of your group that contributed the least. As you contributed most, no one elects to sanction you.
-			{% formfield player.understanding_question_3 with label="After sanctioning occurs, how much money do you have this round?"%}
-			{% formfield player.understanding_question_4 with label="How much money does the group member that you sanctioned lose because of this action?"%}
+			You and two other members of your group decide to contribute to the group, but the fourth member of
+			the group decides to contribute $0. You elect to sanction the member of your group that contributed nothing.
+			{% formfield player.understanding_question_5 with label="How much does sanctioning the group member cost you?"%}
+			{% formfield player.understanding_question_6 with label="How much money does the group member that you sanctioned lose?"%}
 		</li>
 	</ol>
 

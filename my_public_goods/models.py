@@ -35,7 +35,7 @@ class Constants(BaseConstants):
     candy_1 = "Mini-snickers"
     candy_2 = "Starburst"
 
-    paying_round = 2
+    paying_round = 6
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):
@@ -131,7 +131,9 @@ class Player(BasePlayer):
     understanding_question_1 = models.CurrencyField(min=0)
     understanding_question_2 = models.CurrencyField(min=0)
     understanding_question_3 = models.CurrencyField(min=0)
-    understanding_question_4 = models.CurrencyField()
+    understanding_question_4 = models.CurrencyField(min=0)
+    understanding_question_5 = models.CurrencyField(min=0)
+    understanding_question_6 = models.CurrencyField(min=0)
 
     questionnaire_1 = models.CurrencyField(min=0)
     questionnaire_2 = models.CurrencyField(min=0)
