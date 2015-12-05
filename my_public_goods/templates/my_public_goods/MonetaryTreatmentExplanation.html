@@ -1,17 +1,12 @@
 {% extends "global/Base.html" %} {% load staticfiles otree_tags %}
 
-{% block title %} Important Notice for Rounds {{ subsession.round_number }} through {{ subsession.round_number | add:"3"}} {% endblock %}
+{% block title %} Important Notice for Round {{ subsession.round_number }} {% endblock %}
 
 {% block content %}
 
-	<h4>Please read the following instructions carefully:</h4>
-
-	<ul>
-		<li>
-			In the next four rounds, you will now be given a small reward for contributing to the group.
-			<b>For every $1 that you contribute to the group, you will be rewarded with {{ Constants.contribution_reward }}</b>.
-		</li>
-	</ul>
+	<p>
+		In this round, you will be given an extra reward for contributing to the group.<b>For every $1 that you contribute to the group, you will be rewarded with {{ Constants.contribution_reward }}</b>.
+	</p>
 
 {% next_button %}
 

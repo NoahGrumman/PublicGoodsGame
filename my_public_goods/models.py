@@ -23,16 +23,16 @@ A public goods game for testing the effect of social rewards on norm enforcement
 class Constants(BaseConstants):
     name_in_url = 'PublicGoodsGame'
     players_per_group = 4
-    num_rounds = 6
+    num_rounds = 12
 
-    endowment = c(15)
+    endowment = c(10)
     sanction_fee = c(1)
-    sanction_penalty = c(4)
-    efficiency_factor = 1.8
+    sanction_penalty = c(3)
+    efficiency_factor = 2
 
     contribution_reward = c(0.05)
-    candy_1 = "Peanut M&M"
-    candy_2 = "Swedish Fish"
+    candy_1 = "Mini-snickers"
+    candy_2 = "Starbursts"
 
 class Subsession(BaseSubsession):
     def before_session_starts(self):

@@ -71,7 +71,7 @@ class MonetaryTreatmentExplanation(Page):
         treatment_group_1 = self.player.participant.vars['treatment_group_1']
         treatment_group_2 = self.player.participant.vars['treatment_group_2']
         treatment_group_3 = self.player.participant.vars['treatment_group_3']
-        return (round_number == 1 and treatment_group_1 == 'Monetary') or (round_number == 5 and treatment_group_2 == 'Monetary') or (round_number == 9 and treatment_group_3 == 'Monetary')
+        return (round_number in range(1,5) and treatment_group_1 == 'Monetary') or (round_number in range(5,9) and treatment_group_2 == 'Monetary') or (round_number in range(9,13) and treatment_group_3 == 'Monetary')
 
 class CandyTreatmentExplanation(Page):
     def is_displayed(self):
@@ -79,7 +79,7 @@ class CandyTreatmentExplanation(Page):
         treatment_group_1 = self.player.participant.vars['treatment_group_1']
         treatment_group_2 = self.player.participant.vars['treatment_group_2']
         treatment_group_3 = self.player.participant.vars['treatment_group_3']
-        return (round_number == 1 and treatment_group_1 == 'Candy') or (round_number == 5 and treatment_group_2 == 'Candy') or (round_number == 9 and treatment_group_3 == 'Candy')
+        return (round_number in range(1,5) and treatment_group_1 == 'Candy') or (round_number in range(5,9) and treatment_group_2 == 'Candy') or (round_number in range(9,13) and treatment_group_3 == 'Candy')
 
 class ControlExplanation(Page):
     def is_displayed(self):
@@ -87,7 +87,7 @@ class ControlExplanation(Page):
         treatment_group_1 = self.player.participant.vars['treatment_group_1']
         treatment_group_2 = self.player.participant.vars['treatment_group_2']
         treatment_group_3 = self.player.participant.vars['treatment_group_3']
-        return (round_number == 1 and treatment_group_1 == 'Control') or (round_number == 5 and treatment_group_2 == 'Control') or (round_number == 9 and treatment_group_3 == 'Control')
+        return (round_number in range(1,5) and treatment_group_1 == 'Control') or (round_number in range(5,9) and treatment_group_2 == 'Control') or (round_number in range(9,13) and treatment_group_3 == 'Control')
 
 class FinalResults(Page):
     def is_displayed(self):

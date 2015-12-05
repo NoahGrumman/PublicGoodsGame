@@ -1,16 +1,12 @@
 {% extends "global/Base.html" %} {% load staticfiles otree_tags %}
 
-{% block title %} Important Notice for Rounds {{ subsession.round_number }} through {{ subsession.round_number | add:"3"}} {% endblock %}
+{% block title %} Important Notice for Round {{ subsession.round_number }} {% endblock %}
 
 {% block content %}
 
-	<h4>Please read the following instructions carefully:</h4>
-
-	<ul>
-		<li>
-			In the next four rounds, there will be no reward for contributing to the group.
-		</li>
-	</ul>
+	<p>
+		The original rules of the game apply in this round, so you <b>not</b> will be given an extra reward for contributing to the group. Please note that the <b>sum of contributions to the group will still be multiplied by {{ Constants.efficiency_factor }} and divided evenly among all {{ Constants.players_per_group }} group members</b>.
+	</p>
 
 {% next_button %}
 
